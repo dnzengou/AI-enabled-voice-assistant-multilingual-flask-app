@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI Voice Assistant for Farmers</title>
+    <style>
+        body { font-family: Arial, sans-serif; margin: 20px; }
+        button { margin: 5px; }
+        #output { margin-top: 20px; }
+    </style>
+</head>
+<body>
+
+<h1>AI Voice Assistant for Farmers</h1>
+<label for="language-select">Choose a language:</label>
+<select id="language-select" onchange="updateLanguage()">
+    <option value="sw">Swahili</option>
+    <option value="rw">Kinyarwanda</option>
+</select>
+<br>
+<button onclick="startListening()">Start Listening</button>
+<div id="output"></div>
+
+<script>
+    let selectedLanguage = 'sw'; // Default language
+
+    function updateLanguage() {
+        const languageSelect = document.getElementById('language-select');
+        selectedLanguage = languageSelect.value;
+    }
+
+    async function startListening() {
+        const response = await fetch('/listen', { method: 'POST' });
+        const data = await response.json();
+        
+        if (data.command) {
+            document.getElementById('output').innerText = `You said: ${data.command}`;
+            await processCommand(data.command);
+        } else {
+            document.getElementById('output').innerText = data.error;
+        }
+    }
+
+    async function processCommand(command) {
+        const response = await fetch('/ask', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ command: command, language: selectedLanguage })
+        });
+        const data = await response.json();
+        document.getElementById('output').innerText += `\nAssistant: ${data.response}`;
+    }
+</script>
+
+</body>
+</html>
