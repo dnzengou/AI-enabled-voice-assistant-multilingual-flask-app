@@ -1,0 +1,18 @@
+{
+    "hello": {
+        "sw": "Habari, nafarijika kukuona!",
+        "rw": "Bwakire, nishimiye kukubona!"
+    },
+    "how are you?": {
+        "sw": "Niko salama, asante!",
+        "rw": "Ndiho neza, urakoze!"
+    },
+    "info on crops": {
+        "sw": "Kuhusu mazao, tunaweza kujadili maelezo zaidi.",
+        "rw": "Ku bijyanye n'ibijumba, dushobora kuganira ku bisobanuro birambuye."
+    },
+    "weather forecast": {
+        "sw": "Hali ya hewa inatarajiwa kuwa nzuri kesho.",
+        "rw": "Ikirere giteganyijwe kuba cyiza ejo."
+    }
+}
